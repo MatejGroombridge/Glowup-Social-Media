@@ -1,3 +1,3 @@
-# Matej-Groombridge-Major-Project
+# Glowup Social
 
-Refer to documentation files for further information.
+All relevant information, including installation instructions, can be found in the documentation files.
