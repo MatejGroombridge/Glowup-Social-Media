@@ -78,17 +78,6 @@ WSGI_APPLICATION = 'HSC_Major_Project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': '53BcG1-de4-a5*3cC*aAad6-Db54CFBd',
-#         'HOST': 'monorail.proxy.rlwy.net',
-#         'PORT': '42623',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
