@@ -1,0 +1,76 @@
+{% load static %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+
+<header>
+  <nav class="hide-mobile">
+    <a class="nav-title" href="/"><p>Glowup</p></a>
+    <div class="nav-links">
+      <ul>
+        <li>
+          <a href="/post" style="font-size: 1.3em; border: 5px solid #ffdc00; border-radius: 50%;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="11" cy="11" r="11" fill="#FFDC00"/>
+<circle cx="11" cy="11" r="10" fill="#242525"/>
+<path d="M11 6C11 7.95262 11 11 11 11M11 16V11M11 11H16M11 11H6" stroke="#FFDC00" stroke-width="2" stroke-linecap="round"/>
+</svg>
+
+
+
+          </a>
+        </li>
+        <li>
+          <a href="/profile/{{user.username}}" style="font-size: 1.3em;">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 18.337C20 22.3987 15.5228 21.9884 10 21.9884C4.47715 21.9884 0 22.3987 0 18.337C0 14.2752 5.40888 11 10 11C14.5911 11 20 14.2752 20 18.337Z" fill="#242525"/>
+<circle cx="10" cy="5" r="5" fill="#242525"/>
+</svg>
+          </a>
+        </li>
+        <li>
+          <a href="/info">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" class="icon-color" fill="#242525"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="/logout">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 2H2V20H10" stroke="#242525" stroke-width="4" stroke-linecap="round"/>
+<path d="M9 11H19M19 11L14.5556 6M19 11L14.5556 16" stroke="#242525" stroke-width="4" stroke-linecap="round"/>
+</svg>
+
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="show-mobile">
+    <h1>Glowup</h1>
+    <div class="nav-links">
+				<ul>
+					<li><a href="/">Home</a></li>
+          <li><a href="/profile/{{user.username}}">Profile</a></li>
+          <li><a href="/post">Post</a></li>
+          <li><a href="/message">Messages</a></li>
+        </ul>
+        <ul>
+          <li><a href="/liked-posts">Liked</a></li>
+          <li><a href="/challenge">Challenge</a></li>
+					<li><a href="/logout">Logout</a></li>
+					<li><a href="/settings">Settings</a></li>
+        </ul>
+    </div>
+  </nav>
+</header>
+
+
+<style>
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

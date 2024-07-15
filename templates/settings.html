@@ -1,0 +1,46 @@
+{% extends '_template.html' %} {% block title %} Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    {% include 'components/sidebar.html' %}
+    <section class="main-content">
+        <div class="wrapper settings-wrapper">
+            
+            <form action="" method="POST" enctype="multipart/form-data">
+                <h1>Settings</h1>
+                {% csrf_token %}
+                <div class="input-wrapper">
+                    <div>
+                        <h3>Profile Image</h3>
+                        <label class="custom-file">
+                            <input name="image" type="file" value="">
+                        </label>
+                    </div>
+                    <img class="settings-pfp hide-mobile" src="{{user_profile.profile_img.url}}" alt="profile image">
+                </div>
+
+                <h3>Bio</h3>
+                <textarea id="bio" name="bio" rows="3">{{user_profile.bio}}</textarea>
+
+                <div class="btn-wrapper">
+                    <button class="btn" type="submit">Submit</button>
+                </div>
+
+                {% if messages %}
+                    <ul class="messages" style="width: 100%;">
+                        {% for message in messages %}
+                            <li style="text-decoration: underline; font-size: 1em; width: 100%;" class="small-text">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <br>
+                <br>
+                <br>
+            </form>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

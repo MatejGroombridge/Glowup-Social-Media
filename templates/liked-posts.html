@@ -1,0 +1,122 @@
+{% extends '_template.html' %} {% block title %} Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<div class="container home-container">
+    {% include 'components/sidebar.html' %}
+    <section class="main-content">
+        <h1>Liked Posts</h1>
+        <div class="post-wrapper" id="scroll-listen">
+            {% for post in sorted_posts reversed%}
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-header-image">
+                            <img src="{{post.profile_image.url}}" alt="face" />
+                        </div>
+                        <div class="post-header-text">
+                            <a href="/profile/{{post.post.user}}" class="post-username">{{post.post.user}}</a>
+                            <p class="post-time">{{post.time_since_posted}}</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>
+                            {{post.post.post_content}}
+                        </p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-actions">
+                            <div class="post-comment-list">
+                                {% if post.post.no_of_likes == 0 and post.post.no_of_comments == 1 %}
+                                    <p>1 comment</p>
+                                {% elif post.post.no_of_likes == 1 and post.post.no_of_comments == 0 %}
+                                    <p>1 like</p>
+                                {% elif post.post.no_of_likes == 1 and post.post.no_of_comments > 1 %}
+                                    <p>1 like, {{post.post.no_of_comments}} comments</p>
+                                {% elif post.post.no_of_likes > 1 and post.post.no_of_comments == 0 %}
+                                    <p>{{post.post.no_of_likes}} likes</p>
+                                {% elif post.post.no_of_likes == 0 and post.post.no_of_comments > 1 %}
+                                    <p>{{post.post.no_of_comments}} comments</p>
+                                {% elif post.post.no_of_likes > 1 and post.post.no_of_comments == 1 %}
+                                    <p>{{post.post.no_of_likes}} likes, 1 comment</p>
+                                {% elif post.post.no_of_likes == 1 and post.post.no_of_comments == 1 %}
+                                    <p>1 like, 1 comment</p>
+                                {% elif post.post.no_of_likes > 1 and post.post.no_of_comments > 1 %}
+                                    <p>{{post.post.no_of_likes}} likes, {{post.post.no_of_comments}} comments</p>
+                                {% endif %}
+                            </div>
+                            <a href="/like-post?post_id={{post.post.id}}" id="like-link" onclick="changeLike()"><i class="fa-regular fa-heart" id="like-btn"></i></a>
+
+                            <button class="btn-comment" type="submit" onclick="openModal('{{ post.post.id }}')"><i style="font-size: 27px" class="fa-regular fa-comment fa-2xl"></i></button>
+
+                            <div id="myModal_{{ post.post.id }}" class="modal">
+                                <div class="modal-content">
+                                    <span class="close" onclick="closeModal('{{ post.post.id }}')">&times;</span>
+                                    {% comment %} <h1>Comments</h1> {% endcomment %}
+                                    <p style="font-style: italic; text-align: center; padding: 2em;">"{{post.post.post_content}}"</p>
+
+                                    {% if post.post.no_of_comments == 0 %}
+                                        <hr>
+                                        <p class="small-text">Be the first to comment on this post</p>
+                                    {% else %}
+                                        {% for comment in post.comments%}
+                                            <hr>
+                                            <p><strong>{{comment.user}}</strong>: {{comment.comment}}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <form action="/add_comment" method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="comment-input">
+                                <input
+                                type="text"
+                                name="comment"
+                                placeholder="Comment..."
+                                />
+
+                                <input type="hidden" name="post_id" value="{{post.post.id}}">
+
+                                <button class="btn" type="submit"><i style="font-size: 1.5em;" class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <div class="user-suggestions">
+        <h3>Check Out These Users</h3>
+        {% for suggestion in suggestions_username_profile_list%}
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-header-image">
+                        <img src="{{suggestion.profile_img.url}}" alt="face" />
+                    </div>
+                    <div class="post-header-text">
+                        <a href="/profile/{{suggestion.user}}" class="post-username">{{suggestion.user}}</a>
+                        <p class="post-time">{{suggestion.bio}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function openModal(postId) {
+        document.getElementById('myModal_' + postId).style.display = 'block';
+    }
+
+    function closeModal(postId) {
+        document.getElementById('myModal_' + postId).style.display = 'none';
+    }
+
+    function changeLike() {
+        document.getElementById("like-link").classList.toggle("liked");
+    }
+</script>
+
+{% endblock %}

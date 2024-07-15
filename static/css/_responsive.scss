@@ -1,0 +1,197 @@
+@media (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .home-container {
+    width: 100vw;
+  }
+
+  .main-content {
+    width: 100%;
+    overflow-y: scroll;
+  }
+
+  .container {
+    width: 100vw;
+    overflow-y: scroll;
+  }
+
+  header {
+    height: 200px;
+  }
+
+  nav {
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      margin: 0 2em;
+
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 1em;
+        width: 50px;
+
+        a {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+
+  .user-suggestions {
+    display: none;
+  }
+
+  .post-wrapper {
+    width: 100%;
+  }
+
+  .post {
+    width: 100%;
+    height: 100%;
+  }
+
+  form {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .post-textarea {
+      width: 70%;
+      margin: 1em;
+    }
+
+    .btn {
+      width: 50vw;
+      justify-self: center;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    textarea {
+      width: 70%;
+    }
+  }
+
+  .centre-menu {
+    width: 100%;
+    overflow-y: scroll;
+  }
+
+  .wrapper {
+    overflow-y: scroll;
+    width: 100%;
+  }
+
+  .settings-wrapper {
+    width: 70%;
+    padding: 2em;
+  }
+
+  .custom-file {
+    width: 80%;
+    margin: 0 2em;
+  }
+
+  .profile-wrapper {
+    overflow-y: hidden;
+  }
+
+  .user-profile {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    padding: 1em;
+    overflow: hidden;
+  }
+
+  .add-btn {
+    justify-content: center;
+  }
+
+  .btn-wrapper {
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+
+    .btn {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .modal-content {
+    width: 80vw;
+  }
+
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .user-specific {
+    justify-content: center;
+  }
+
+  .main-content {
+    overflow-y: scroll;
+  }
+
+  .user-profile-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    form {
+      width: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin: 0;
+      padding: 0;
+      height: 50px;
+
+      .add-btn {
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{% extends '_template.html' %} {% block title %} Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<div class="container info-content">
+    {% include 'components/sidebar.html' %}
+    <section class="main-content">
+        <div class="wrapper">
+            <div class="article">
+
+                <h1>Spread Kindness!</h1>
+                <p>At glowup we're all about positivity. Send a kindess message to a random user.</p>
+                {% if random_user %}
+                    <p><strong>Your User:</strong> {{ random_user.username }}</p>
+                    <form method="post">
+                        {% csrf_token %}
+    
+                        <textarea name="message_content" id="message_content" rows="5" cols="30"></textarea>
+                        
+                        <div class="btn-wrapper" style="margin: 0; padding: 0;">
+                            <button class="btn" type="submit">Send</button>
+                        </div>
+        
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li style="text-decoration: underline; font-size: 1em" class="small-text">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </form>
+                {% else %}
+                    <p class="small-text">There are no other users right now, but check back soon!</p>
+                {% endif %}
+                <br>
+                <h2>Recieved Messages</h2>
+                {% if received_messages %}
+                    {% for message in received_messages %}
+                        <p><strong>From @{{ message.from_user.username }}:</strong> <i>{{ message.message }}</i>  <span class="small-text"><br class="show-mobile">(Recieved {{ message.sent_at|timesince }} ago)</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p>You haven't received any kindness messages yet. Check back later.</p>
+                {% endif %}
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

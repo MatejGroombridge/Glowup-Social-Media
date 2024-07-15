@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Title{% endblock %}</title>
+    <link href="favicon.png" rel="icon" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <script src="https://kit.fontawesome.com/dc045b6d29.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    {% include 'components/navbar.html' %}
+
+    <div class="whole template-whole">{% block content %}{% endblock %}</div>
+  </body>
+
+  <script>
+    var scrollValue = 0;
+    
+    const scrollDiv = document.getElementById("scroll-listen");
+
+    function restoreScrollPosition() {
+      // Check if the element exists
+      if (!scrollDiv) {
+        return; // Do nothing if element not found
+      }
+
+      // Check if scroll position is stored in localStorage
+      const storedScroll = localStorage.getItem("scroll-listen-position");
+
+      // If stored scroll position exists, use it
+      if (storedScroll) {
+        scrollDiv.scrollTop = parseInt(storedScroll);
+      } else {
+        // If no stored position, scroll to top
+        scrollDiv.scrollTop = 0;
+      }
+    }
+
+    // Add event listener to window load event
+    window.addEventListener("load", restoreScrollPosition);
+
+    // Add event listener to window beforeunload event (optional)
+    window.addEventListener("beforeunload", function() {
+      // Store current scroll position in localStorage
+      scrollValue = document.getElementById("scroll-listen").scrollTop;
+      localStorage.setItem("scroll-listen-position", scrollValue);
+    });
+  </script>
+</html>

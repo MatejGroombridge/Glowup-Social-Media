@@ -1,0 +1,187 @@
+{% extends '_template.html' %} {% block title %} Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    {% include 'components/sidebar.html' %}
+    <section class="main-content">
+      <div class="wrapper profile-wrapper">
+        <div class="user-profile">
+          <img class="profile-image" src="{{user_profile.profile_img.url}}" alt="">
+          <div class="user-profile-info">
+            <p>@{{user_profile.user.username}}</p>
+            
+            <form action="/follow" method="POST">
+              {% csrf_token %}
+
+              <div class="add-btn">
+                {% if user_posts_length == 0 %}
+                <span><b>No Posts</b></span>
+                {% elif user_posts_length == 1 %}
+                <span
+                  ><b>{{user_posts_length}} Post</b></span
+                >
+                {% else %}
+                <span
+                  ><b>{{user_posts_length}} Posts</b></span
+                >
+                {% endif %}
+    
+                {% if user_followers == 1 %}
+                <span
+                  ><b>{{user_followers}} follower</b></span
+                >
+                {% else %}
+                <span
+                  ><b>{{user_followers}} followers</b></span
+                >
+                {% endif %}
+    
+                <span
+                  ><b>{{user_following}} following</b></span
+                >
+    
+                <input type="hidden" value="{{user.username}}" name="follower">
+                <input type="hidden" value="{{user_object.username}}" name="user">
+    
+              </div>
+
+              <div class="user-specific">
+                {% if user_object.username == user.username %}
+                  <a href="/challenge" data-ripple=""
+                    >
+                    <svg width="23" height="33" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.8536 8.91867C14.064 10.5348 15 12.3723 15 14.1026C15 15.4394 14.4518 17.0764 13.3779 18.365C12.3306 19.6218 10.8289 20.5 8.88163 20.5C6.71446 20.5 4.85593 19.8563 3.56665 18.7724C2.30436 17.7112 1.5 16.1599 1.5 14.1026C1.5 12.1066 1.84315 9.77094 4.11624 7.93653C4.8992 7.30468 5.40613 6.55706 5.72392 5.78436C5.98637 6.7925 6.0695 7.74097 6.09582 8.5951C6.10897 9.02215 6.1077 9.41434 6.10644 9.80069C6.10608 9.91394 6.10571 10.0267 6.10571 10.1397C6.10571 10.6054 6.11114 11.1163 6.17473 11.573C6.23551 12.0095 6.37661 12.6314 6.82813 13.1454C7.34451 13.7333 8.03804 13.9348 8.68571 13.9348C10.002 13.9348 10.9691 13.17 11.5827 12.3254C12.1909 11.4884 12.5709 10.433 12.7719 9.4015C12.8029 9.24227 12.8302 9.08112 12.8536 8.91867Z" stroke="#242525" stroke-width="3"/></svg>                  </a
+                  >
+                  <p style="font-size: 20px;">{{user_profile.current_streak}}</p>
+                  <a href="/settings" data-ripple="" style="margin-left: 1em;"
+                    >
+                      <svg width="27" height="27" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M15.5 12C15.5 14.1722 14.1722 15.5 12 15.5C9.8278 15.5 8.5 14.1722 8.5 12C8.5 9.8278 9.8278 8.5 12 8.5C14.1722 8.5 15.5 9.8278 15.5 12Z" stroke="#242525" stroke-width="3"/> <path d="M10.1488 3.4797C10.5944 1.50677 13.4056 1.50677 13.8512 3.4797C14.14 4.75835 15.6074 5.36614 16.7158 4.66623C18.426 3.58628 20.4137 5.57405 19.3338 7.28424C18.6339 8.39262 19.2416 9.85995 20.5203 10.1488C22.4932 10.5944 22.4932 13.4056 20.5203 13.8512C19.2416 14.14 18.6339 15.6074 19.3338 16.7158C20.4137 18.426 18.426 20.4137 16.7158 19.3338C15.6074 18.6339 14.14 19.2416 13.8512 20.5203C13.4056 22.4932 10.5944 22.4932 10.1488 20.5203C9.85995 19.2416 8.39262 18.6339 7.28424 19.3338C5.57405 20.4137 3.58628 18.426 4.66623 16.7158C5.36614 15.6074 4.75835 14.14 3.4797 13.8512C1.50677 13.4056 1.50677 10.5944 3.4797 10.1488C4.75835 9.85995 5.36614 8.39262 4.66623 7.28424C3.58628 5.57405 5.57405 3.58628 7.28424 4.66623C8.39262 5.36614 9.85995 4.75835 10.1488 3.4797Z" stroke="#242525" stroke-width="3"/></svg>
+                    </a
+                  >
+                {% else %}
+                  <a href="/challenge" data-ripple=""
+                    >
+                    <svg width="23" height="33" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.8536 8.91867C14.064 10.5348 15 12.3723 15 14.1026C15 15.4394 14.4518 17.0764 13.3779 18.365C12.3306 19.6218 10.8289 20.5 8.88163 20.5C6.71446 20.5 4.85593 19.8563 3.56665 18.7724C2.30436 17.7112 1.5 16.1599 1.5 14.1026C1.5 12.1066 1.84315 9.77094 4.11624 7.93653C4.8992 7.30468 5.40613 6.55706 5.72392 5.78436C5.98637 6.7925 6.0695 7.74097 6.09582 8.5951C6.10897 9.02215 6.1077 9.41434 6.10644 9.80069C6.10608 9.91394 6.10571 10.0267 6.10571 10.1397C6.10571 10.6054 6.11114 11.1163 6.17473 11.573C6.23551 12.0095 6.37661 12.6314 6.82813 13.1454C7.34451 13.7333 8.03804 13.9348 8.68571 13.9348C10.002 13.9348 10.9691 13.17 11.5827 12.3254C12.1909 11.4884 12.5709 10.433 12.7719 9.4015C12.8029 9.24227 12.8302 9.08112 12.8536 8.91867Z" stroke="#242525" stroke-width="3"/></svg>                  </a
+                  >
+                  <p style="font-size: 20px;">{{user_profile.max_streak}}</p>
+                  <a data-ripple=""
+                    ><button style="width: 80px; margin: 0;" class="btn" type="submit">
+                      {{button_text}}
+                    </button></a
+                  >
+                {% endif %}
+              </div>
+            </form>
+          </div>
+        </div>
+        <p class="user-bio">{{user_profile.bio}}</p>
+      </div>
+      <div class="wrapper">
+        <div class="post-wrapper hide-mobile" id="scroll-listen">
+          {% for post in sorted_posts reversed%}
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-header-image">
+                            <img src="{{post.profile_image.url}}" alt="face" />
+                        </div>
+                        <div class="post-header-text">
+                            <a href="/profile/{{post.post.user}}" class="post-username">{{post.post.user}}</a>
+                            <p class="post-time">{{post.time_since_posted}}</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>
+                            {{post.post.post_content}}
+                        </p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-actions">
+                            <div class="post-comment-list">
+                                {% if post.post.no_of_likes == 0 and post.post.no_of_comments == 1 %}
+                                    <p>1 comment</p>
+                                {% elif post.post.no_of_likes == 1 and post.post.no_of_comments == 0 %}
+                                    <p>1 like</p>
+                                {% elif post.post.no_of_likes == 1 and post.post.no_of_comments > 1 %}
+                                    <p>1 like, {{post.post.no_of_comments}} comments</p>
+                                {% elif post.post.no_of_likes > 1 and post.post.no_of_comments == 0 %}
+                                    <p>{{post.post.no_of_likes}} likes</p>
+                                {% elif post.post.no_of_likes == 0 and post.post.no_of_comments > 1 %}
+                                    <p>{{post.post.no_of_comments}} comments</p>
+                                {% elif post.post.no_of_likes > 1 and post.post.no_of_comments == 1 %}
+                                    <p>{{post.post.no_of_likes}} likes, 1 comment</p>
+                                {% elif post.post.no_of_likes == 1 and post.post.no_of_comments == 1 %}
+                                    <p>1 like, 1 comment</p>
+                                {% elif post.post.no_of_likes > 1 and post.post.no_of_comments > 1 %}
+                                    <p>{{post.post.no_of_likes}} likes, {{post.post.no_of_comments}} comments</p>
+                                {% endif %}
+                            </div>
+                            {% comment %} {%if response.user_liked == True %}
+                                <a href="/like-post?post_id={{post.post.id}}"><i class="fa-regular fa-heart"></i></a>
+                            {% else %}
+                                <a href="/like-post?post_id={{post.post.id}}"><i class="fa-regular fa-heart"></i></a>
+                            {% endif %} {% endcomment %}
+                            <a href="/like-post?post_id={{post.post.id}}" id="like-link" onclick="changeLike()"><i class="fa-regular fa-heart" id="like-btn"></i></a>
+
+                            <button class="btn-comment" type="submit" onclick="openModal('{{ post.post.id }}')"><i style="font-size: 27px" class="fa-regular fa-comment fa-2xl"></i></button>
+
+                            {% comment %} {% for message in messages %}
+                                <p class="error-msg">{{message}}</p class="errormsg">
+                            {% endfor %} {% endcomment %}
+    
+                            <div id="myModal_{{ post.post.id }}" class="modal">
+                                <div class="modal-content">
+                                    <span class="close" onclick="closeModal('{{ post.post.id }}')">&times;</span>
+                                    {% comment %} <h1>Comments</h1> {% endcomment %}
+                                    <p style="font-style: italic; text-align: center; padding: 2em;">"{{post.post.post_content}}"</p>
+
+                                    {% if post.post.no_of_comments == 0 %}
+                                        <hr>
+                                        <p class="small-text">Be the first to comment on this post</p>
+                                    {% else %}
+                                        {% for comment in post.comments%}
+                                            <hr>
+                                            <p><strong>{{comment.user}}</strong>: {{comment.comment}}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <form action="/add_comment" method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="comment-input">
+                                <input
+                                type="text"
+                                name="comment"
+                                placeholder="Comment..."
+                                />
+
+                                <input type="hidden" name="post_id" value="{{post.post.id}}">
+
+                                <button class="btn" type="submit"><i style="font-size: 1.5em;" class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+</div>
+
+<script>
+    function openModal(postId) {
+        document.getElementById('myModal_' + postId).style.display = 'block';
+    }
+
+    function closeModal(postId) {
+        document.getElementById('myModal_' + postId).style.display = 'none';
+    }
+
+    function changeLike() {
+        document.getElementById("like-link").classList.toggle("liked");
+    }
+</script>
+
+{% endblock %}

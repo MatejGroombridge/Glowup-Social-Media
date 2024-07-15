@@ -1,0 +1,39 @@
+{% extends '_template.html' %} {% block title %} Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<div class="container info-content">
+    {% include 'components/sidebar.html' %}
+    <section class="main-content">
+        <div class="wrapper">
+            <div class="article">
+                <h1>Welcome to Glowup!</h1>
+                <p>
+                    Welcome to Glowup, a social media platform designed to cultivate a space of positivity, encouragement, and well-being. We believe social media should be a tool for connection and growth, not negativity and anxiety.
+                </p>
+                <h3>Our Mission</h3>
+                <p>At Glowup, we're on a mission to revolutionise social media by fostering a supportive online community that prioritises mental and emotional health. We achieve this through:</p>
+                <p>1) Promoting Positive Content: Our algorithm prioritises posts that uplift, motivate, and inspire. Say goodbye to negativity spirals and hello to a space overflowing with kindness and encouragement.</p>
+                <p>2) Enhancing Wellbeing: We provide resources and information to help users make healthy lifestyle choices and cultivate a positive mindset. Glowup empowers you to prioritise your well-being alongside your social connections.</p>
+                <p>3) Rewarding Kindness: We actively encourage acts of kindness and gratitude. By rewarding users for spreading positivity, we create a ripple effect of compassion that extends beyond the online world.</p>
+                <h3>Who We Are For:</h3>
+                <p>Glowup is designed for anyone seeking a more positive and mindful social media experience. Whether you're looking to:</p>
+                <p>- Connect with like-minded individuals who share your values of kindness and positivity.</p>
+                <p>- Find encouragement and support on your personal growth journey.</p>
+                <p>- Escape the negativity often associated with traditional social media platforms.</p>
+                <p>Glowup is the perfect platform for you!</p>
+                <h3>Additional Features:</h3>
+                <p>1) Easy-to-use interface for a seamless social experience.</p>
+                <p>2) Robust safety measures to ensure a respectful and inclusive environment.</p>
+                <p>3) Accessible across various devices for on-the-go positivity.</p>
+                <p>4) Fast and responsive platform for an enjoyable user experience.</p>
+                <p>Glowup is more than just a social media platform; it's a community dedicated to spreading love and fostering a brighter online world. Let's glow together!</p>
+                <br>
+                <a class="btn" href="/settings"> Let's Go! </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

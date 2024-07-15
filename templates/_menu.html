@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Title{% endblock %}</title>
+    <link href="favicon.png" rel="icon" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% comment %} Main CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+    {% comment %} Fontawesome {% endcomment %}
+    <script src="https://kit.fontawesome.com/dc045b6d29.js" crossorigin="anonymous"></script>
+
+
+    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link rel="stylesheet" href="{% static 'old/css/main.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'old/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'old/css/color.css' %}" />
+    <link rel="stylesheet" href="{% static 'old/css/responsive.css' %}" /> {% endcomment %}
+  </head>
+
+  <!-- Body -->
+  <body>
+    <div class="menu-wrapper">
+      <div class="mega-logo">
+        <h1>Glowup</h1>
+        <h2>Your Mental Makeover</h2>
+      </div>
+      <div class="whole menu-whole">{% block content %}{% endblock %}</div>
+    </div>
+  </body>
+
+  <!-- Scripts -->
+  <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>  
+  <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'assets/js/uikit.js' %}"></script>
+  <script src="{% static 'assets/js/simplebar.js' %}"></script>
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+  <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+
+</html>

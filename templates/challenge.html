@@ -1,0 +1,36 @@
+{% extends '_template.html' %} {% block title %} Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    {% include 'components/sidebar.html' %}
+    <section class="main-content">
+        <div class="wrapper">
+            <h1>Kindness Challenge</h1>
+            <h3 style="margin: 0;">Today's Challenge:</h3>
+            <p> {{daily_challenge}}</p>
+
+            <form class="challenge-form" action="/challenge" method="POST">
+                {% csrf_token %}
+                
+                {% if today_completed %}
+                    <div class="btn-wrapper">
+                        <button class="btn" type="submit">Completed 🔥🔥🔥</button>
+                    </div>
+                {% else %}
+                    <div class="btn-wrapper">
+                        <button class="btn" type="submit">Complete</button>
+                    </div>
+                {% endif %}
+
+                <div class="current-streaks">
+                    <p><strong>Current Streak:</strong> {{user_profile.current_streak}}</p>
+                    <p><strong>Max Streak:</strong> {{user_profile.max_streak}}</p>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

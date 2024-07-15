@@ -1,0 +1,28 @@
+{% extends '_template.html' %} {% block title %} Post // Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    {% include 'components/sidebar.html' %}
+    <section class="main-content">
+      <div class="wrapper">
+        <h1>Create Post</h1>
+        <form action="" method="POST">
+          {% csrf_token %}
+          
+          <textarea class="post-textarea" name="post_content" cols="30" rows="10" placeholder="What's going on?!" ></textarea>
+          
+          {% for message in messages %}
+            <p class="error-msg">{{message}}</p class="errormsg">
+          {% endfor %}
+          
+          <div class="btn-wrapper">
+            <button class="btn" type="submit">Post</button>
+          </div>
+        </form>
+      </div>
+    </section>
+</div>
+
+{% endblock %}

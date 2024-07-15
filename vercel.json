@@ -1,0 +1,14 @@
+
+{
+    "builds": [{
+        "src": "HSC_Major_Project/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9", "distDir": "staticfiles" }
+    }],
+    "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "HSC_Major_Project/wsgi.py"
+    }
+  ]
+}

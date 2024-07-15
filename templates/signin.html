@@ -1,0 +1,46 @@
+
+{% extends '_menu.html' %} {% block title %} Sign In // Glowup {% endblock %} 
+
+{% block content %}
+{% load static %}
+
+<section>
+  <div class="centre-menu">
+    <div class="content">
+      <h1>Sign In</h1>
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        
+        {% for message in messages %}
+          <p class="error-msg">{{message}}</p class="errormsg">
+        {% endfor %}
+        
+        <div class="btn-wrapper">
+          <button class="btn" type="submit">Submit</button>
+        </div>
+        
+        <div>
+          <p>
+            Not registered?
+            <a href="/signup" class=""> Create an account. </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
